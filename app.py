@@ -3,20 +3,20 @@ import datetime
 app = Flask(__name__)
 
 @app.route("/")
-@app.route("/web")
+@app.route("/lab1/web")
 def web():
     return """<!doctype html>
         <html>
             <body> 
                 <h1>web-сервер на flask</h1>
-                <a href="/author">author</a>
+                <a href="/lab1/author">author</a>
             </body>
         </html>""", 200, {
             "X-Server": "sample",
             "Content-Type": "text/html; charset=utf-8"
             }
 
-@app.route("/author")
+@app.route("/lab1/author")
 def author():
     name = "Крюков василий Александрович"
     group = "ФБИ-41"
@@ -27,11 +27,11 @@ def author():
                 <p>Студент: """ + name + """</p>
                 <p>Группа: """ + group + """</p>
                 <p>Факультет: """ + faculty + """</p>
-                <a href="/web">web</a>
+                <a href="/lab1/web">web</a>
             </body> 
         </html>"""
 
-@app.route('/image')
+@app.route('/lab1/image')
 def image():
     path1 = url_for("static", filename="elephant.jpg")
     path2 = url_for("static", filename="lab1.css")
@@ -57,7 +57,7 @@ def image():
 
 count = 0
 
-@app.route('/counter')
+@app.route('/lab1/counter')
 def counter():
     global count
     count += 1
@@ -70,7 +70,7 @@ def counter():
 <html>
     <body> 
         СКолько раз вы сюда заходили: ''' + str(count) +'''
-        <a href="/clear_counter">Очистить счётчик</a>
+        <a href="/lab1/clear_counter">Очистить счётчик</a>
         <hr>
         Дата и время: ''' + str(time) + ''' <br>
         Запрошенный адрес: ''' + url + ''' <br>
@@ -79,17 +79,17 @@ def counter():
 </html>
 '''
 
-@app.route('/clear_counter')
+@app.route('/lab1/clear_counter')
 def clear_counter():
     global count 
     count = 0
-    return redirect('/counter')
+    return redirect('/lab1/counter')
 
-@app.route("/info")
+@app.route("/lab1/info")
 def info():
-    return redirect("/author")
+    return redirect("/lab1/author")
 
-@app.route("/created")
+@app.route("/lab1/created")
 def created():
     return '''
 <!doctype html>
