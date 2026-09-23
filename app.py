@@ -13,7 +13,7 @@ def web():
             </body>
         </html>""", 200, {
             "X-Server": "sample",
-            "Content-Type": "text/plain; charset=utf-8"
+            "Content-Type": "text/html; charset=utf-8"
             }
 
 @app.route("/author")
@@ -33,13 +33,24 @@ def author():
 
 @app.route('/image')
 def image():
-    path = url_for("static", filename="elephant.jpg")
-    return '''
+    path1 = url_for("static", filename="elephant.jpg")
+    path2 = url_for("static", filename="lab1.css")
+
+    icon1 = url_for("static", filename="icon1.png")
+    icon2 = url_for("static", filename="icon2.png")
+
+    return f'''
 <!doctype html>
 <html>
+    <head>
+        <link rel="stylesheet" href="{path2}" >
+
+        <link rel="icon" type="image/png" href="{icon1}">
+        <link rel="icon" type="image/png" href="{icon2}">
+    </head>
     <body> 
         <h1>Слон</h1>
-        <img src="''' + path +'''">
+        <img src="''' + path1 +'''">
     </body> 
 </html>
 '''
