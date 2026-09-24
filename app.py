@@ -140,3 +140,71 @@ def created():
 def not_found(err):
     return "нет такой страницы", 404
 
+@app.route("/lab1/400")
+def code400():
+    return """<!doctype html>
+<html>
+    <head><title>400 Bad Request</title></head>
+    <body>
+        <h1>400 Bad Request — Плохой запрос</h1>
+        <p>Сервер не смог понять запрос из-за недействительного синтаксиса.</p>
+    </body>
+</html>""", 400
+
+@app.route("/lab1/401")
+def code401():
+    return """<!doctype html>
+<html>
+    <head><title>401 Unauthorized</title></head>
+    <body>
+        <h1>401 Unauthorized — Не авторизован</h1>
+        <p>Для доступа к запрашиваемому ресурсу требуется аутентификация.</p>
+    </body>
+</html>""", 401
+
+@app.route("/lab1/402")
+def code_402():
+    return """<!doctype html>
+<html>
+    <head><title>402 Payment Required</title></head>
+    <body>
+        <h1>402 Payment Required — Необходима оплата</h1>
+        <p>Этот код зарезервирован для будущего использования. Доступ к ресурсу требует оплаты.</p>
+    </body>
+</html>""", 402
+
+
+@app.route("/lab1/403")
+def code_403():
+    return """<!doctype html>
+<html>
+    <head><title>403 Forbidden</title></head>
+    <body>
+        <h1>403 Forbidden — Запрещено</h1>
+        <p>У вас нет прав для просмотра этого ресурса.</p>
+    </body>
+</html>""", 403
+
+
+@app.route("/lab1/405")
+def code_405():
+    return """<!doctype html>
+<html>
+    <head><title>405 Method Not Allowed</title></head>
+    <body>
+        <h1>405 Method Not Allowed — Метод не поддерживается</h1>
+        <p>Метод запроса не поддерживается для указанного ресурса.</p>
+    </body>
+</html>""", 405
+
+
+@app.route("/lab1/418")
+def code_418():
+    return """<!doctype html>
+<html>
+    <head><title>418 I'm a teapot</title></head>
+    <body>
+        <h1>418 I'm a teapot — Я чайник</h1>
+        <p>Сервер отказывается заваривать кофе, потому что он чайник.</p>
+    </body>
+</html>""", 418
