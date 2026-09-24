@@ -33,10 +33,18 @@ def index():
 def web():
     return """<!doctype html>
         <html>
+            <head>
+                <title>Лабораторная 1</title>
+            </head>
+
             <body> 
                 <h1>web-сервер на flask</h1>
+
+                <p>«От нерешительности теряешь больше, чем от неверного решения»</p>
+
                 <a href="/lab1/author">author</a>
                 <a href="/index">На главную</a>
+                <a href="/">Ссылка на корень сайта</a>
             </body>
         </html>""", 200, {
             "X-Server": "sample",
