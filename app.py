@@ -138,7 +138,50 @@ def created():
 
 @app.errorhandler(404)
 def not_found(err):
-    return "нет такой страницы", 404
+    return '''
+<!doctype html>
+<html>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: red;
+            color: #333;
+            text-align: center;
+            padding: 50px 20px;
+            margin: 0;
+            line-height: 1.5;
+            }
+
+        h1 {
+            font-size: 40px;
+            margin: 0;
+            color: #FFFFFF;
+            }
+
+        div {
+            font-size: 20px;
+            margin: 0;
+            color: #FFFFFF;
+            }
+
+        img {
+            margin-top: 20px;
+            }
+    </style>
+
+    <body> 
+        <hr>
+        <h1>404 — Страница не найдена</h1>
+        <hr>
+        <title>404 — Страница не найдена</title>
+        <div><b>Что делать?</b></div>
+        <div><i>Проверьте адрес: Убедитесь, что вы правильно написали ссылку в строке браузера.</i></div>
+        <div><i>Обновите страницу: Нажмите клавишу F5 или значок обновления. Иногда это временный сбой.</i></div>
+        <div><i>Перейдите на главную: Сотрите всё после доменного имени в строке поиска, чтобы зайти на главную страницу сайта.</i></div>
+        <img src="/static/404.jpg" alt="404 Not Found">
+    </body> 
+</html>
+''', 404
 
 @app.route("/lab1/400")
 def code400():
