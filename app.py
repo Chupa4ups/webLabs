@@ -74,6 +74,13 @@ def image():
     icon1 = url_for("static", filename="icon1.png")
     icon2 = url_for("static", filename="icon2.png")
 
+    headers = {
+        "Content-Type": "text/html; charset=utf-8",
+        "Content-Language": "ru",             
+        "Image-Category": "Animals",        
+        "Author-Group": "FBI-41"           
+    }
+
     return f'''
 <!doctype html>
 <html>
@@ -88,7 +95,69 @@ def image():
         <img src="''' + path1 +'''">
     </body> 
 </html>
-'''
+''', 200, headers
+
+@app.route('/lab1/image/en')
+def image_en():
+    path1 = url_for("static", filename="elephant.jpg")
+    path2 = url_for("static", filename="lab1.css")
+
+    icon1 = url_for("static", filename="icon1.png")
+    icon2 = url_for("static", filename="icon2.png")
+
+    headers = {
+        "Content-Type": "text/html; charset=utf-8",
+        "Content-Language": "en",
+        "Image-Category": "Animals",
+        "Author-Group": "FBI-41"
+    }
+
+    return f'''
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Elephant</title>
+        <link rel="stylesheet" href="{path2}">
+        <link rel="icon" type="image/png" href="{icon1}">
+        <link rel="icon" type="image/png" href="{icon2}">
+    </head>
+    <body> 
+        <h1>Elephant</h1>
+        <img src="{path1}" alt="Elephant">
+    </body> 
+</html>
+''', 200, headers
+
+@app.route('/lab1/image/de')
+def image_de():
+    path1 = url_for("static", filename="elephant.jpg")
+    path2 = url_for("static", filename="lab1.css")
+
+    icon1 = url_for("static", filename="icon1.png")
+    icon2 = url_for("static", filename="icon2.png")
+
+    headers = {
+        "Content-Type": "text/html; charset=utf-8",
+        "Content-Language": "de",
+        "Image-Category": "Animals",
+        "Author-Group": "FBI-41"
+    }
+
+    return f'''
+<!doctype html>
+<html lang="de">
+    <head>
+        <title>Elefant</title>
+        <link rel="stylesheet" href="{path2}">
+        <link rel="icon" type="image/png" href="{icon1}">
+        <link rel="icon" type="image/png" href="{icon2}">
+    </head>
+    <body> 
+        <h1>Elephant</h1>
+        <img src="{path1}" alt="Elephant">
+    </body> 
+</html>
+''', 200, headers
 
 count = 0
 
