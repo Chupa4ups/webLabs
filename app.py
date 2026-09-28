@@ -41,10 +41,29 @@ def web():
                 <h1>web-сервер на flask</h1>
 
                 <p>«От нерешительности теряешь больше, чем от неверного решения»</p>
+                
+                    <li><a href="/lab1/author">author</a></li>
+                    <li><a href="/index">На главную</a></li>
+                    <li><a href="/">Ссылка на корень сайта</a></li>
+                
+                <h2>Меню</h2>
 
-                <a href="/lab1/author">author</a>
-                <a href="/index">На главную</a>
-                <a href="/">Ссылка на корень сайта</a>
+                    <li><a href="/lab1/author">Автор</a></li>
+                    <li><a href="/lab1/image">Слон (RU)</a></li>
+                    <li><a href="/lab1/image/en">Elephant (EN)</a></li>
+                    <li><a href="/lab1/image/de">Elefant (DE)</a></li>
+                    <li><a href="/lab1/counter">Счётчик</a></li>
+                    <li><a href="/lab1/clear_counter">Очистить счётчик</a></li>
+                    <li><a href="/lab1/info">Информация</a></li>
+                    <li><a href="/lab1/created">Статус 201 Created</a></li>
+                    <li><a href="/lab1/400">Ошибка 400 Bad Request</a></li>
+                    <li><a href="/lab1/401">Ошибка 401 Unauthorized</a></li>
+                    <li><a href="/lab1/402">Ошибка 402 Payment Required</a></li>
+                    <li><a href="/lab1/403">Ошибка 403 Forbidden</a></li>
+                    <li><a href="/lab1/405">Ошибка 405 Method Not Allowed</a></li>
+                    <li><a href="/lab1/418">Ошибка 418 I'm a teapot</a></li>
+                    <li><a href="/lab1/error">Ошибка 500</a></li>
+                
             </body>
         </html>""", 200, {
             "X-Server": "sample",
