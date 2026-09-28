@@ -251,3 +251,21 @@ def code_418():
         <p>Сервер отказывается заваривать кофе, потому что он чайник.</p>
     </body>
 </html>""", 418
+
+@app.route("/lab1/error")
+def trigger_error():
+    return 1 / 0 
+
+@app.errorhandler(500)
+def internal_server_error(err):
+    return """<!doctype html>
+<html>
+    <head><title>500 - Внутренняя ошибка сервера</title></head>
+    <body>
+        <h1>500 - Внутренняя ошибка сервера</h1>
+        <p>Сервер столкнулся с неожиданной проблемой и не смог выполнить запрос.</p>
+    </body>
+</html>""", 500, {
+    "Content-Type": "text/html; charset=utf-8",
+    "Content-Language": "ru"
+    }
