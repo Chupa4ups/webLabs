@@ -1,5 +1,7 @@
 from flask import Flask, url_for, request, redirect
-import datetime
+from datetime import datetime
+
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -224,8 +226,25 @@ def created():
 </html>
 ''', 201
 
+access_log = []
+
 @app.errorhandler(404)
 def not_found(err):
+    user_ip = request.remote_addr
+    access_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    requested_url = request.url
+
+    access_log.append({
+        "ip": user_ip,
+        "time": access_time,
+        "url": requested_url
+    })
+
+    log_items = "".join([
+            f"<li><b>[" + entry['time'] + "]</b> IP: "+ entry['ip'] + " &rarr; URL: <code> " + entry['url'] + "</code></li>"
+            for entry in access_log
+        ])
+
     return '''
 <!doctype html>
 <html>
@@ -267,9 +286,29 @@ def not_found(err):
         <div><i>Обновите страницу: Нажмите клавишу F5 или значок обновления. Иногда это временный сбой.</i></div>
         <div><i>Перейдите на главную: Сотрите всё после доменного имени в строке поиска, чтобы зайти на главную страницу сайта.</i></div>
         <img src="/static/404.jpg" alt="404 Not Found">
+
+        <p><b>Ваш IP-адрес:</b> ''' + user_ip + '''</p>
+        <p><b>Дата и время доступа:</b>''' + access_time + '''</p>
+
+        <p><a href="/">Вернуться на главную страницу</a></p>
+
+        <hr>
+        <h2>Журнал запросов (Лог 404):</h2>
+        <ul>
+            ''' + log_items +'''
+        </ul>
+
+        <p><a href="/lab1/clear_access_log" style="color: #fff; font-weight: bold;">Очистить журнал 404</a></p>
+
     </body> 
 </html>
 ''', 404
+
+@app.route('/lab1/clear_access_log')
+def clear_access_log():
+    global access_log
+    access_log = [] 
+    return redirect('/lab1/unknown') 
 
 @app.route("/lab1/400")
 def code400():
