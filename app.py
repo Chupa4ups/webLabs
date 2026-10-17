@@ -396,3 +396,12 @@ def internal_server_error(err):
     "Content-Type": "text/html; charset=utf-8",
     "Content-Language": "ru"
     }
+
+
+@app.route('/lab2/a')
+def a():
+    return 'без слэша'
+
+@app.route('/lab2/a/')
+def a2():
+    return 'со слэшем'
