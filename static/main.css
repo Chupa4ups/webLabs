@@ -1,0 +1,70 @@
+body {
+    background-color: lightblue;
+    color: maroon;
+    font-family: Arial;
+    margin: 0px;
+}
+
+main {
+    background-color: lightblue;
+    color: maroon;
+    font-family: Arial;
+    margin: 10px 20px 36px;
+}
+
+footer {
+    background-color: darkblue;
+    color: lightblue;
+    font-family: Arial;
+    margin: 0px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+header {
+    background-color: darkblue;
+    color: lightblue;
+    font-family: Arial;
+    margin: 0px;
+}
+
+a {
+    color: green;
+    text-decoration: none;
+    transition: 1s 2s;
+}
+
+a:link {
+    color: rgb(26, 36, 171);
+    opacity: 0.9;
+}
+
+a:visited {
+    color: rgb(194, 12, 151);
+    opacity: 0.7;
+}
+
+a:hover {
+    color: red;
+    text-decoration: underline;
+    transition: 0.3s;
+}
+
+a:active {
+    color: black;
+    opacity: 0.3;
+}
+
+div.menu {
+    border: 7px solid #00880080;
+    border-radius: 5px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+div.menu:hover {
+    background-color: #ffffff30;
+    box-shadow: 0 0 15px #00000030;
+}
