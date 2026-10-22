@@ -186,7 +186,7 @@ count = 0
 def counter():
     global count
     count += 1
-    time = datetime.datetime.today()
+    time = datetime.today()
     url = request.url
     client_ip = request.remote_addr
 
@@ -504,3 +504,19 @@ def calc_default():
 @app.route('/lab2/calc/<int:a>')
 def calc_one(a):
     return redirect(f'/lab2/calc/{a}/1')
+
+@app.route('/lab2/books')
+def books():
+    books_list = [
+        {"author": "Пушкин А.С.", "title": "Евгений Онегин", "genre": "Роман в стихах", "pages": 224},
+        {"author": "Лермонтов М.Ю.", "title": "Герой нашего времени", "genre": "Роман", "pages": 240},
+        {"author": "Гоголь Н.В.", "title": "Мертвые души", "genre": "Поэма", "pages": 352},
+        {"author": "Толстой Л.Н.", "title": "Война и мир", "genre": "Эпопея", "pages": 1300},
+        {"author": "Достоевский Ф.М.", "title": "Преступление и наказание", "genre": "Роман", "pages": 416},
+        {"author": "Буглаков М.А.", "title": "Мастер и Маргарита", "genre": "Роман", "pages": 480},
+        {"author": "Тургенев И.С.", "title": "Отцы и дети", "genre": "Роман", "pages": 320},
+        {"author": "Гончаров И.А.", "title": "Обломов", "genre": "Роман", "pages": 384},
+        {"author": "Есенин С.А.", "title": "Стихотворения", "genre": "Поэзия", "pages": 150},
+        {"author": "Чехов А.П.", "title": "Рассказы", "genre": "Проза", "pages": 300}
+    ]
+    return render_template('books.html', books=books_list)
