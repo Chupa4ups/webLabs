@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 2{% endblock %}
+
+{% block main %}
+    <p>Расчёт с параметрами:</p>
+    <p>
+        {{ a }} + {{ b }} = {{ sum }}<br>
+        {{ a }} - {{ b }} = {{ sub }}<br>
+        {{ a }} &times; {{ b }} = {{ mul }}<br>
+        {{ a }} / {{ b }} = {{ div }}<br>
+        {{ a }}<sup>{{ b }}</sup> = {{ pow }}
+    </p>
+{% endblock %}
