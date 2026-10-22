@@ -20,6 +20,7 @@ def index():
         <main>
             <menu>3
                 <li><a href="/lab1">Первая лабораторная</a></li>
+                <li><a href="/lab2/">Вторая лабораторная</a></li>
             </menu>
         </main>
         
