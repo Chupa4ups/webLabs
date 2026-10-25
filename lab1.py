@@ -1,8 +1,7 @@
 from flask import Blueprint, url_for, request, redirect, abort
 from datetime import datetime
-
-
 lab1 = Blueprint('lab1', __name__)
+
 
 # @lab1.route("/")
 # @lab1.route("/index")
@@ -30,6 +29,7 @@ lab1 = Blueprint('lab1', __name__)
 #         </footer>
 #     </body>
 # </html>"""
+
 
 @lab1.route("/lab1")
 @lab1.route("/lab1/web")
@@ -73,6 +73,7 @@ def web():
             "Content-Type": "text/html; charset=utf-8"
             }
 
+
 @lab1.route("/lab1/author")
 def author():
     name = "Крюков василий Александрович"
@@ -87,6 +88,7 @@ def author():
                 <a href="/lab1/web">web</a>
             </body> 
         </html>"""
+
 
 @lab1.route('/lab1/image')
 def image():
@@ -119,6 +121,7 @@ def image():
 </html>
 ''', 200, headers
 
+
 @lab1.route('/lab1/image/en')
 def image_en():
     path1 = url_for("static", filename="elephant.jpg")
@@ -149,6 +152,7 @@ def image_en():
     </body> 
 </html>
 ''', 200, headers
+
 
 @lab1.route('/lab1/image/de')
 def image_de():
@@ -181,7 +185,9 @@ def image_de():
 </html>
 ''', 200, headers
 
+
 count = 0
+
 
 @lab1.route('/lab1/counter')
 def counter():
@@ -205,15 +211,18 @@ def counter():
 </html>
 '''
 
+
 @lab1.route('/lab1/clear_counter')
 def clear_counter():
     global count 
     count = 0
     return redirect('/lab1/counter')
 
+
 @lab1.route("/lab1/info")
 def info():
     return redirect("/lab1/author")
+
 
 @lab1.route("/lab1/created")
 def created():
@@ -227,7 +236,9 @@ def created():
 </html>
 ''', 201
 
+
 access_log = []
+
 
 # @lab1.errorhandler(404)
 # def not_found(err):
