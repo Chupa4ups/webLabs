@@ -521,3 +521,29 @@ def books():
         {"author": "Чехов А.П.", "title": "Рассказы", "genre": "Проза", "pages": 300}
     ]
     return render_template('books.html', books=books_list)
+
+@app.route('/lab2/cars')
+def american_cars():
+    cars = [
+        {"name": "Chevrolet Impala SS", "years": "1994–1996", "engine": "V8 5.7L", "description": "Легендарный полноразмерный седан с полицейскими корнями и мощным двигателем LT1.", "image": "impala.jpg"},
+        {"name": "Dodge Viper RT/10", "years": "1992–1995", "engine": "V10 8.0L", "description": "Брутальный спорткар без электронных помощников с мотором от грузовика.", "image": "viper.jpg"},
+        {"name": "Ford Mustang SVT Cobra", "years": "1993–1998", "engine": "V8 5.0L / 4.6L", "description": "Культовая заряженная версия «Мустанга» 90-х годов.", "image": "mustang90.jpg"},
+        {"name": "Chevrolet Corvette Z06 (C5)", "years": "2001–2004", "engine": "V8 5.7L LS6", "description": "Настоящий убийца европейских суперкаров с потрясающей динамикой.", "image": "corvettec5.jpg"},
+        {"name": "Ford GT", "years": "2004–2006", "engine": "V8 5.4L Supercharged", "description": "Возрождение легендарного гоночного автомобиля побеждавшего в Ле-Мане.", "image": "fordgt.jpg"},
+        {"name": "Dodge Charger SRT8", "years": "2006–2010", "engine": "V8 6.1L HEMI", "description": "Мощный американский седан для любителей динамичной езды и классического стиля.", "image": "charger.jpg"},
+        {"name": "Chevrolet Camaro SS", "years": "2010–2015", "engine": "V8 6.2L", "description": "Яркий представитель эпохи возрождения масл-каров с агрессивным дизайном.", "image": "camaro.jpg"},
+        {"name": "Ford Mustang Shelby GT500", "years": "2010–2014", "engine": "V8 5.4L/5.8L Supercharged", "description": "Безумный зверь с компрессором мощностью более 600 лошадиных сил.", "image": "shelby.jpg"},
+        {"name": "Cadillac CTS-V", "years": "2009–2014", "engine": "V8 6.2L Supercharged", "description": "Люксовый седан, способный соревноваться на треке с лучшими трековыми купе.", "image": "ctsv.jpg"},
+        {"name": "Dodge Challenger SRT Hellcat", "years": "2015", "engine": "V8 6.2L Supercharged", "description": "Кульминация эпохи современных масл-каров с дикой мощностью в 717 л.с.", "image": "hellcat.jpg"},
+        {"name": "Jeep Grand Cherokee SRT8", "years": "2012–2015", "engine": "V8 6.4L HEMI", "description": "Сверхбыстрый заряженный внедорожник для любых дорог.", "image": "jeepsrt8.jpg"},
+        {"name": "Tesla Model S Performance", "years": "2012–2015", "engine": "Электромотор", "description": "Революционный американский электрокар, изменивший автомобильный мир.", "image": "models.jpg"},
+        {"name": "Pontiac Firebird Trans Am", "years": "1998–2002", "engine": "V8 5.7L LS1", "description": "Последнее поколение легендарного «Понтиака» с агрессивным хищным дизайном.", "image": "firebird.jpg"},
+        {"name": "GMC Syclone", "years": "1991–1992", "engine": "V6 4.3L Turbo", "description": "Ультрабыстрый пикап, который в разгоне до 100 км/ч обгонял Ferrari того времени.", "image": "syclone.jpg"},
+        {"name": "Ford F-150 SVT Lightning", "years": "1999–2004", "engine": "V8 5.4L Supercharged", "description": "Заряженный спортивный пикап от подразделения SVT.", "image": "lightning.jpg"},
+        {"name": "Chevrolet Corvette C6 ZR1", "years": "2009–2013", "engine": "V8 6.2L LS9", "description": "Технологический флагман компании Chevrolet с карбоновыми кузовными панелями.", "image": "zr1.jpg"},
+        {"name": "Dodge Viper SRT10 (ZB I)", "years": "2003–2006", "engine": "V10 8.3L", "description": "Новое поколение бескомпромиссного американского родстера.", "image": "viper2.jpg"},
+        {"name": "Chrysler 300C SRT8", "years": "2005–2010", "engine": "V8 6.1L HEMI", "description": "Автомобиль с брутальной внешностью в стиле британских лимузинов и американским мотором.", "image": "300c.jpg"},
+        {"name": "Buick Regal GNX (наследие 90-х)", "years": "1987–1990", "engine": "V6 3.8L Turbo", "description": "Культовый черный турбированный седан, закрывший эпоху мощных масл-каров прошлого.", "image": "gnx.jpg"},
+        {"name": "Chevrolet SSR", "years": "2003–2006", "engine": "V8 5.3L / 6.0L", "description": "Эпатажный ретро-пикап с жестким складывающимся верхом кабриолета.", "image": "ssr.jpg"}
+    ]
+    return render_template('cars.html', cars=cars)
