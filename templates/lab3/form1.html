@@ -4,8 +4,7 @@
 
 {% block main %}
 
-{% if user %}
-
+{% if user and not errors.user %}
     <h1>Привет, {{ user }}!</h1>
     <h2>Добро пожаловать на наш сайт!</h2>
     <div>ваш возраст: {{ age }}</div>
@@ -21,19 +20,20 @@
     <form>
         <label>Ваше имя: </label>
         <div>
-            <input type="text" placeholder="как вас зовут?" name="user">
+            <input type="text" placeholder="как вас зовут?" name="user" value="{{ user or '' }}">
+            <span style="color: red;">{{ errors.user or '' }}</span>
         </div>
         
         <label>Ваш возраст: </label>
         <div>
-            <input type="number" name="age">
+            <input type="number" name="age" value="{{ age or '' }}">
         </div>
 
         <label>Ваш пол: </label>
         <div>
             <select name="sex">
-                <option value="male">мужчина</option>
-                <option value="female">женщина</option>
+                <option value="male" {{ sex == 'male' and 'selected' }}>мужчина</option>
+                <option value="female" {{ sex == 'female' and 'selected' }}>женщина</option>
             </select>
         </div>
 
