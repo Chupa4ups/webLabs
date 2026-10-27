@@ -6,6 +6,16 @@
     <title>Крюков Василий. {% block lab %}{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='icon2.png') }}">
+    <style>
+        body {
+            {% if request.cookies.get('color') %}
+            color: {{ request.cookies.get('color') }};
+            {% endif %}
+            {% if request.cookies.get('background') %}
+            background-color: {{ request.cookies.get('background') }};
+            {% endif %}
+        }
+    </style>
 </head>
 <body>
     <header>

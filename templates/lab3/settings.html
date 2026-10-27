@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 3{% endblock %}
+
+{% block main %}
+
+<h1>Настройки сайта (Куки)</h1>
+
+<form>
+    <div>
+        <label class="label" for="color">Выберите цвет текста: </label>
+        <input type="color" id="color" name="color" value="{{ color or '' }}">
+    </div>
+    <div>
+        <label class="label" for="background">Выберите цвет фона: </label>
+        <input type="color" id="background" name="background" value="{{ background or '' }}">
+    </div>
+    <div>
+        <button type="submit">Сохранить</button>
+    </div>
+</form>
+<div>
+    <a href="/lab3/">Назад в меню</a>
+</div>
+{% endblock %}
