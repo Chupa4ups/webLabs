@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 3{% endblock %}
+
+{% block main %}
+
+<h1>Железнодорожный билет</h1>
+
+<form action="/lab3/ticket">
+    <div>ФИО пассажира:</div>
+    <div>
+        <input type="text" name="fio" value="{{ form.fio or '' }}">
+        <span style="color: red;">{{ errors.fio or '' }}</span>
+    </div>
+
+    <div>Возраст:</div>
+    <div>
+        <input type="number" name="age" value="{{ form.age or '' }}">
+        <span style="color: red;">{{ errors.age or '' }}</span>
+    </div>
+
+    <div>Полка:</div>
+    <div>
+        <select name="shelf">
+            {% for key, title in shelves.items() %}
+            <option value="{{ key }}" {{ 'selected' if form.shelf == key else '' }}>{{ title }}</option>
+            {% endfor %}
+        </select>
+        <span style="color: red;">{{ errors.shelf or '' }}</span>
+    </div>
+
+    <div>Пункт выезда:</div>
+    <div>
+        <input type="text" name="departure" value="{{ form.departure or '' }}">
+        <span style="color: red;">{{ errors.departure or '' }}</span>
+    </div>
+
+    <div>Пункт назначения:</div>
+    <div>
+        <input type="text" name="destination" value="{{ form.destination or '' }}">
+        <span style="color: red;">{{ errors.destination or '' }}</span>
+    </div>
+
+    <div>Дата поездки:</div>
+    <div>
+        <input type="date" name="date" value="{{ form.date or '' }}">
+        <span style="color: red;">{{ errors.date or '' }}</span>
+    </div>
+
+    <div>Дополнительно:</div>
+    <label>
+        <input type="checkbox" name="linen" {{ 'checked' if form.linen else '' }}> с бельём
+    </label>
+    <label>
+        <input type="checkbox" name="baggage" {{ 'checked' if form.baggage else '' }}> с багажом
+    </label>
+    <label>
+        <input type="checkbox" name="insurance" {{ 'checked' if form.insurance else '' }}> нужна страховка
+    </label>
+
+    <div>
+        <button type="submit">Купить билет</button>
+    </div>
+</form>
+{% endblock %}

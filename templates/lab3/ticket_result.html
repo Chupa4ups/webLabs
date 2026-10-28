@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 3{% endblock %}
+
+{% block main %}
+
+<h1>Железнодорожный билет</h1>
+
+{% if is_child %}
+<h2>Детский билет</h2>
+{% endif %}
+
+<div>Пассажир: {{ form.fio }}</div>
+<div>Возраст: {{ form.age }}</div>
+<div>Маршрут: {{ form.departure }} &rarr; {{ form.destination }}</div>
+<div>Дата поездки: {{ date }}</div>
+<div>Полка: {{ shelf_name }}</div>
+<div>Бельё: {{ 'да' if form.linen else 'нет' }}</div>
+<div>Багаж: {{ 'да' if form.baggage else 'нет' }}</div>
+<div>Страховка: {{ 'да' if form.insurance else 'нет' }}</div>
+
+<hr>
+<div>{{ 'Детский билет' if is_child else 'Взрослый билет' }}: {{ base_price }} руб.</div>
+{% for title, cost in extras %}
+<div>{{ title }}: +{{ cost }} руб.</div>
+{% endfor %}
+<h3>Итого: {{ price }} руб.</h3>
+
+<div>
+    <a href="/lab3/ticket">Купить ещё билет</a>
+</div>
+{% endblock %}
