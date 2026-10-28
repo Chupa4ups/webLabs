@@ -6,8 +6,9 @@
 <h1>Формы, cookie</h1>
 
 <div>
-    Привет, <span style="color: {{name_color}}">{{name}}</span>
+    Привет, <span style="color: {{ name_color or 'inherit' }}">{{ name }}</span>!
 </div>
+<div>Ваш возраст: {{ age }}</div>
 
 <div>Список сделанных страниц: </div>
 <ol>
@@ -15,6 +16,9 @@
     <li><a href="/lab3/del_cookie">Очистить куки</a></li>
     <li><a href="/lab3/cookie">Куки</a></li>
     <li><a href="/lab3/form1">Форма (GET)</a></li>
+    <li><a href="/lab3/order">Заказ напитка</a></li>
     <li><a href="/lab3/settings">Настройки цвета текста</a></li>
+    <li><a href="/lab3/clear_settings">Очистить настройки отображения</a></li>
+    <li><a href="/lab3/ticket">Железнодорожный билет</a></li>
 </ol>
 {% endblock %}

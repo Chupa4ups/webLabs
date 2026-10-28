@@ -81,21 +81,21 @@ def example():
             {'name': 'манго', 'price': 321}
         ]
    
-    return render_template('example.html', name=name, lab_num=number, 
+    return render_template('lab2/example.html', name=name, lab_num=number, 
                            course=course, group=group, fruits=fruits)
 
 @lab2.route('/lab2/')
 def lab2_index():
-    return render_template('lab2.html')
+    return render_template('lab2/lab2.html')
 
 @lab2.route('/lab2/filters')
 def filters():
     phrase = "О <b>сколько</b> <u>нам</u> <i>открытиый</i> чудных..."
-    return render_template('filter.html', phrase=phrase)
+    return render_template('lab2/filter.html', phrase=phrase)
 
 @lab2.route('/lab2/calc/<int:a>/<int:b>')
 def calc(a, b):
-    return render_template('calc.html', a=a, b=b, 
+    return render_template('lab2/calc.html', a=a, b=b, 
                            sum=a+b, sub=a-b, mul=a*b, 
                            div=a/b if b != 0 else "ошибка (деление на 0)", 
                            pow=a**b)
@@ -122,7 +122,7 @@ def books():
         {"author": "Есенин С.А.", "title": "Стихотворения", "genre": "Поэзия", "pages": 150},
         {"author": "Чехов А.П.", "title": "Рассказы", "genre": "Проза", "pages": 300}
     ]
-    return render_template('books.html', books=books_list)
+    return render_template('lab2/books.html', books=books_list)
 
 @lab2.route('/lab2/cars')
 def american_cars():
@@ -148,4 +148,4 @@ def american_cars():
         {"name": "Buick Regal GNX (наследие 90-х)", "years": "1987–1990", "engine": "V6 3.8L Turbo", "description": "Культовый черный турбированный седан, закрывший эпоху мощных масл-каров прошлого.", "image": "gnx.jpg"},
         {"name": "Chevrolet SSR", "years": "2003–2006", "engine": "V8 5.3L / 6.0L", "description": "Эпатажный ретро-пикап с жестким складывающимся верхом кабриолета.", "image": "ssr.jpg"}
     ]
-    return render_template('cars.html', cars=cars)
+    return render_template('lab2/cars.html', cars=cars)

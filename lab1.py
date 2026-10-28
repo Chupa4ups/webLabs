@@ -92,8 +92,8 @@ def author():
 
 @lab1.route('/lab1/image')
 def image():
-    path1 = url_for("static", filename="elephant.jpg")
-    path2 = url_for("static", filename="lab1.css")
+    path1 = url_for("static", filename="lab1/elephant.jpg")
+    path2 = url_for("static", filename="lab1/lab1.css")
 
     icon1 = url_for("static", filename="icon1.png")
     icon2 = url_for("static", filename="icon2.png")
@@ -124,8 +124,8 @@ def image():
 
 @lab1.route('/lab1/image/en')
 def image_en():
-    path1 = url_for("static", filename="elephant.jpg")
-    path2 = url_for("static", filename="lab1.css")
+    path1 = url_for("static", filename="lab1/elephant.jpg")
+    path2 = url_for("static", filename="lab1/lab1.css")
 
     icon1 = url_for("static", filename="icon1.png")
     icon2 = url_for("static", filename="icon2.png")
@@ -156,8 +156,8 @@ def image_en():
 
 @lab1.route('/lab1/image/de')
 def image_de():
-    path1 = url_for("static", filename="elephant.jpg")
-    path2 = url_for("static", filename="lab1.css")
+    path1 = url_for("static", filename="lab1/elephant.jpg")
+    path2 = url_for("static", filename="lab1/lab1.css")
 
     icon1 = url_for("static", filename="icon1.png")
     icon2 = url_for("static", filename="icon2.png")
@@ -297,7 +297,7 @@ access_log = []
 #         <div><i>Проверьте адрес: Убедитесь, что вы правильно написали ссылку в строке браузера.</i></div>
 #         <div><i>Обновите страницу: Нажмите клавишу F5 или значок обновления. Иногда это временный сбой.</i></div>
 #         <div><i>Перейдите на главную: Сотрите всё после доменного имени в строке поиска, чтобы зайти на главную страницу сайта.</i></div>
-#         <img src="/static/404.jpg" alt="404 Not Found">
+#         <img src="/static/lab1/404.jpg" alt="404 Not Found">
 
 #         <p><b>Ваш IP-адрес:</b> ''' + user_ip + '''</p>
 #         <p><b>Дата и время доступа:</b>''' + access_time + '''</p>

@@ -1,12 +1,15 @@
 from flask import Blueprint, render_template, request, make_response, redirect
+from datetime import datetime
 lab3 = Blueprint('lab3', __name__)
 
 
 @lab3.route('/lab3/')
 def lab():
-    name = request.cookies.get('name')
+    name = request.cookies.get('name') or 'аноним'
+    age = request.cookies.get('age') or 'неизвестен'
     name_color = request.cookies.get('name_color')
-    return render_template('lab3/lab3.html', name=name, name_color=name_color)
+    return render_template('lab3/lab3.html', name=name, age=age,
+                           name_color=name_color)
 
 
 @lab3.route('/lab3/cookie')
@@ -97,3 +100,99 @@ def settings():
         background=background_cookie
     ))
     return resp
+
+
+@lab3.route('/lab3/clear_settings')
+def clear_settings():
+    resp = make_response(redirect('/lab3/settings'))
+    resp.delete_cookie('color')
+    resp.delete_cookie('background')
+    return resp
+
+
+SHELVES = {
+    'lower': 'нижняя',
+    'upper': 'верхняя',
+    'side-upper': 'верхняя боковая',
+    'side-lower': 'нижняя боковая',
+}
+
+
+@lab3.route('/lab3/ticket')
+def ticket():
+    # форма отправлена, если в запросе есть хоть какие-то параметры
+    if not request.args:
+        return render_template('lab3/ticket.html', errors={}, form={},
+                               shelves=SHELVES)
+
+    errors = {}
+    form = {
+        'fio': request.args.get('fio', '').strip(),
+        'shelf': request.args.get('shelf', ''),
+        'linen': request.args.get('linen') == 'on',
+        'baggage': request.args.get('baggage') == 'on',
+        'age': request.args.get('age', '').strip(),
+        'departure': request.args.get('departure', '').strip(),
+        'destination': request.args.get('destination', '').strip(),
+        'date': request.args.get('date', '').strip(),
+        'insurance': request.args.get('insurance') == 'on',
+    }
+
+    # валидация: все поля должны быть заполнены
+    for field in ('fio', 'age', 'departure', 'destination', 'date'):
+        if form[field] == '':
+            errors[field] = 'Заполните поле!'
+
+    if form['shelf'] not in SHELVES:
+        errors['shelf'] = 'Выберите полку!'
+
+    # возраст: целое число от 1 до 120
+    age = None
+    if 'age' not in errors:
+        try:
+            age = int(form['age'])
+        except ValueError:
+            errors['age'] = 'Возраст должен быть целым числом!'
+        else:
+            if not 1 <= age <= 120:
+                errors['age'] = 'Возраст должен быть от 1 до 120 лет!'
+
+    # дата приходит от <input type="date"> в формате ГГГГ-ММ-ДД
+    date = None
+    if 'date' not in errors:
+        try:
+            date = datetime.strptime(form['date'], '%Y-%m-%d')
+        except ValueError:
+            errors['date'] = 'Некорректная дата!'
+
+    if errors:
+        return render_template('lab3/ticket.html', errors=errors, form=form,
+                               shelves=SHELVES)
+
+    # расчёт стоимости
+    is_child = age < 18
+    price = 700 if is_child else 1000
+    extras = []
+    if form['shelf'] in ('lower', 'side-lower'):
+        price += 100
+        extras.append(('Нижняя полка', 100))
+    if form['linen']:
+        price += 75
+        extras.append(('Бельё', 75))
+    if form['baggage']:
+        price += 250
+        extras.append(('Багаж', 250))
+    if form['insurance']:
+        price += 150
+        extras.append(('Страховка', 150))
+
+    return render_template(
+        'lab3/ticket_result.html',
+        form=form,
+        shelf_name=SHELVES[form['shelf']],
+        date=date.strftime('%d.%m.%Y'),
+        is_child=is_child,
+        base_price=700 if is_child else 1000,
+        extras=extras,
+        price=price,
+    )
