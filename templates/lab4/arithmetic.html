@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block lab %}Результат арифметики{% endblock %}
+{% block main %}
+    {% if error %}
+        <div style="color: red;">{{ error }}</div>
+    {% else %}
+        <h1>Результат</h1>
+        <div>{{ x1 }} {{ sign }} {{ x2 }} = {{ result }}</div>
+    {% endif %}
+    <br>
+    <a href="{{ back_url }}">Назад к форме</a>
+{% endblock %}
