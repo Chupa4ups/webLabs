@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block lab %}Заказ бетона{% endblock %}
+
+{% block main %}
+    <h1>Заказ бетона</h1>
+    <form method="post">
+        <div>
+            <label for="kind">Марка:</label>
+            <select id="kind" name="kind">
+                {% for name, price in prices.items() %}
+                    <option value="{{ name }}" {% if name == kind %}selected{% endif %}>
+                        {{ name }} — {{ price }} руб/м³
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="volume">Объём, м³:</label>
+            <input type="number" step="any" id="volume" name="volume" value="{{ volume }}">
+        </div>
+        <button type="submit">Заказать</button>
+    </form>
+
+    {% if error %}
+        <div style="color: red;">{{ error }}</div>
+    {% elif ordered %}
+        <div>
+            Заказ успешно сформирован. Вы заказали {{ kind }}. Объём: {{ shown_volume }} м³.
+            Сумма к оплате: {{ total }} руб
+        </div>
+        {% if discount %}
+            <div>Применена скидка за большой объём (10%): {{ discount }} руб</div>
+        {% endif %}
+    {% endif %}
+    <div><a href="/lab4/">Назад</a></div>
+{% endblock %}

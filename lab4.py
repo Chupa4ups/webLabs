@@ -206,3 +206,42 @@ def weather():
         message = f'Жарко. Температура: {shown}°С'
 
     return render_template('lab4/weather.html', message=message, temperature=raw)
+
+
+CONCRETE_PRICES = {'М200': 4200, 'М300': 4800, 'М400': 5400, 'М500': 6100}
+
+
+@lab4.route('/lab4/concrete', methods=['GET', 'POST'])
+def concrete():
+    if request.method == 'GET':
+        return render_template('lab4/concrete.html', prices=CONCRETE_PRICES, kind='М200')
+
+    kind = request.form.get('kind')
+    raw = request.form.get('volume', '').strip().replace(',', '.')
+
+    def fail(text):
+        return render_template('lab4/concrete.html', prices=CONCRETE_PRICES,
+                               kind=kind, volume=raw, error=text)
+
+    if kind not in CONCRETE_PRICES:
+        return fail('Выберите марку бетона')
+    if raw == '':
+        return fail('Не указан объём')
+    try:
+        volume = float(raw)
+    except ValueError:
+        return fail('Объём должен быть числом')
+    if volume <= 0:
+        return fail('Объём должен быть больше нуля')
+    if volume > 100:
+        return fail('Такого объёма сейчас нет в наличии')
+
+    total = volume * CONCRETE_PRICES[kind]
+    discount = 0
+    if volume > 10:
+        discount = total * 0.10
+        total -= discount
+
+    return render_template('lab4/concrete.html', prices=CONCRETE_PRICES, kind=kind,
+                           volume=raw, ordered=True, shown_volume=round(volume, 2),
+                           total=round(total, 2), discount=round(discount, 2))
