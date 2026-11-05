@@ -173,3 +173,36 @@ def login():
 def logout():
     session.pop('login', None)
     return redirect('/lab4/login')
+
+
+@lab4.route('/lab4/weather', methods=['GET', 'POST'])
+def weather():
+    if request.method == 'GET':
+        return render_template('lab4/weather.html')
+
+    raw = request.form.get('temperature', '').strip().replace(',', '.')
+    if raw == '':
+        return render_template('lab4/weather.html', error='ошибка: не задана температура')
+    try:
+        t = float(raw)
+    except ValueError:
+        return render_template('lab4/weather.html', error='ошибка: температура должна быть числом')
+
+    shown = int(t) if t == int(t) else t
+
+    if t < -30:
+        message = 'слишком холодно'
+    elif t > 30:
+        message = 'слишком жарко'
+    elif t <= -17:
+        message = f'Очень холодно. Температура: {shown}°С'
+    elif t <= 0:
+        message = f'Холодно. Температура: {shown}°С'
+    elif t <= 15:
+        message = f'Прохладно. Температура: {shown}°С'
+    elif t <= 25:
+        message = f'Тепло. Температура: {shown}°С'
+    else:
+        message = f'Жарко. Температура: {shown}°С'
+
+    return render_template('lab4/weather.html', message=message, temperature=raw)

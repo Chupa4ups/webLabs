@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block lab %}Погода{% endblock %}
+
+{% block main %}
+    <h1>Погода</h1>
+    <form method="post">
+        <label for="temperature">Температура (°С):</label>
+        <input type="number" step="any" id="temperature" name="temperature" value="{{ temperature }}">
+        <button type="submit">Проверить</button>
+    </form>
+    {% if error %}
+        <div style="color: red;">{{ error }}</div>
+    {% elif message %}
+        <div>{{ message }}</div>
+    {% endif %}
+    <div><a href="/lab4/">Назад</a></div>
+{% endblock %}
