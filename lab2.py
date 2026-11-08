@@ -95,9 +95,9 @@ def filters():
 
 @lab2.route('/lab2/calc/<int:a>/<int:b>')
 def calc(a, b):
-    return render_template('lab2/calc.html', a=a, b=b, 
-                           sum=a+b, sub=a-b, mul=a*b, 
-                           div=a/b if b != 0 else "ошибка (деление на 0)", 
+    return render_template('lab2/calc.html', a=a, b=b,
+                           sum=a+b, sum_doubled=(a+b)*2, sub=a-b, mul=a*b,
+                           div=a/b if b != 0 else "ошибка (деление на 0)",
                            pow=a**b)
 
 @lab2.route('/lab2/calc/')
